@@ -1,0 +1,22 @@
+server.port: 8090
+
+spring:
+    devtools:
+        livereload:
+            enabled: true
+    thymeleaf:
+        cache: false
+    h2:
+        console:
+            enabled: true
+            path: /console
+    datasource:
+        url: jdbc:h2:mem:sssdb
+        driver-class-name: org.h2.Driver
+        username: jistol
+        password: 1234
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        database-platform: org.hibernate.dialect.H2Dialect
+
