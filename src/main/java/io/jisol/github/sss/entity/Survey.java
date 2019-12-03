@@ -1,26 +1,27 @@
 package io.jisol.github.sss.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
 @Entity
-public class Survey {
+@Data
+public class Survey extends TimeStampEntity {
     @Id
     @GeneratedValue
-    private int qnaId;
+    @Column(nullable = false, unique = true)
+    private int surveyId;
     
     @Column
     private String name;
@@ -29,13 +30,12 @@ public class Survey {
     private String description;
     
     @OneToOne
-    @JoinColumn(name = "questionGroupId")
-    private QuestionGroup questionGroup;
+    @JoinColumn(name = "questionId")
+    @JsonIgnore
+    private Question question;
     
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "answerId")
+    @Fetch(FetchMode.SELECT)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "survey")
+    @JsonIgnore
     private List<Answer> answerList;
-    
-    @CreatedDate
-    private LocalDateTime createdDate;
 }

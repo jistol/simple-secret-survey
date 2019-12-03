@@ -1,27 +1,36 @@
 package io.jisol.github.sss.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
 
-@Data
 @Entity
-public class Answer {
+@Data
+public class Answer extends TimeStampEntity {
     @Id
     @GeneratedValue
     private int answerId;
     
-    @Column
-    private int score;
+    @ManyToOne
+    @JoinColumn(name = "surveyId")
+    @JsonIgnore
+    private Survey survey;
     
-    @Column
-    private int questionCount;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "answerId")
+    private List<AnswerItem> answerItemList;
     
-    @CreatedDate
-    private LocalDateTime createdDate;
+    public static Answer create(Survey survey) {
+        Answer answer = new Answer();
+        answer.setSurvey(survey);
+        return answer;
+    }
 }
