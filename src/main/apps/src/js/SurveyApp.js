@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SurveyList from './SurveyList';
+import SurveyResList from "./SurveyResList";
 
 function SurveyPanel(props) {
     const { children, value, index, ...other } = props;
@@ -66,7 +67,7 @@ export default function SurveyApp() {
                 <SurveyList/>
             </SurveyPanel>
             <SurveyPanel value={value} index={1}>
-                Confirm Result
+                <SurveyResList/>
             </SurveyPanel>
         </div>
     );

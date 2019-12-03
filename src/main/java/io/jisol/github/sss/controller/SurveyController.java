@@ -44,4 +44,18 @@ public class SurveyController {
         }
         return resultMap;
     }
+    
+    @GetMapping("/{surveyId}/result")
+    public Map<String, Object> getSurveyResult(@PathVariable("surveyId") int surveyId) {
+        Map<String, Object> resultMap = new HashMap<>();
+        try {
+            List<Answer> answerList = surveyService.getAnswerListBySurveyId(surveyId);
+            resultMap.put("data", surveyService.convertResult(answerList));
+            resultMap.put("result", true);
+        } catch (Exception e) {
+            resultMap.put("result", false);
+            resultMap.put("message", e.getMessage());
+        }
+        return resultMap;
+    }
 }
