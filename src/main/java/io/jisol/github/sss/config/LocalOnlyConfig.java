@@ -5,9 +5,7 @@ import io.jisol.github.sss.entity.AnswerItem;
 import io.jisol.github.sss.entity.Question;
 import io.jisol.github.sss.entity.QuestionItem;
 import io.jisol.github.sss.entity.Survey;
-import io.jisol.github.sss.repository.AnswerItemRespository;
 import io.jisol.github.sss.repository.AnswerRespository;
-import io.jisol.github.sss.repository.QuestionItemRespository;
 import io.jisol.github.sss.repository.QuestionRespository;
 import io.jisol.github.sss.repository.SurveyRespository;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +14,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,29 +24,27 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class LocalOnlyConfig {
     private final QuestionRespository questionRespository;
-    private final QuestionItemRespository questionItemRespository;
     private final SurveyRespository surveyRespository;
     private final AnswerRespository answerRespository;
-    private final AnswerItemRespository answerItemRespository;
     
     @PostConstruct
     private void setup() {
         Question question = new Question();
-        question.setName("Test Question");
+        question.setName("샘플 질문입니다.");
         
         List<QuestionItem> questionItemList = createQuestionItem(
-                "Question 1",
-                "Question 2",
-                "Question 3",
-                "Last Question"
+                "샘플 질문1 입니다",
+                "샘플 질문2 입니다",
+                "샘플 질문3 입니다",
+                "샘플 질문4 입니다"
         );
         question.setQuestionItemList(questionItemList);
         questionRespository.save(question);
         
     
         Survey survey = new Survey();
-        survey.setName("Test Survey");
-        survey.setDescription("For first test.");
+        survey.setName("샘플 설문입니다.");
+        survey.setDescription("샘플로 제공하는 설문데이터입니다.");
         survey.setQuestion(question);
         
         surveyRespository.save(survey);
