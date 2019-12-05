@@ -10,6 +10,7 @@ import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import CloseIcon from '@material-ui/icons/Close';
 import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar/Avatar";
+import AppBar from "@material-ui/core/AppBar/AppBar";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -35,6 +36,15 @@ const useStyles = makeStyles(theme => ({
         primary : {
             fontSize: '2rem'
         }
+    },
+    toolbar : {
+        margin: '0',
+        paddingTop: '10px',
+        paddingBottom: '10px',
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        borderBottom: '1px',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white'
     }
 }));
 
@@ -77,15 +87,17 @@ export default function SurveyResItem(props) {
                 </Typography>
             </Paper>
             <Dialog fullScreen={true} open={open} onClose={handleClose} onEnter={handleEnter}>
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                        <CloseIcon />
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        {`${props.name} 설문결과`}
-                    </Typography>
-                </Toolbar>
-                <List>
+                <AppBar position="fixed">
+                    <Toolbar className={classes.toolbar}>
+                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                            <CloseIcon />
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title} align={'center'}>
+                            {`${props.name} 설문결과`}
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <List style={{paddingTop:'90px'}}>
                     <ListItem button>
                         <ListItemAvatar>
                             <Avatar className={classes.avatar} variant={"rounded"}>

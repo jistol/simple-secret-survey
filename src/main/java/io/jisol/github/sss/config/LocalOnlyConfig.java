@@ -27,7 +27,7 @@ public class LocalOnlyConfig {
     private final SurveyRespository surveyRespository;
     private final AnswerRespository answerRespository;
     
-    @PostConstruct
+    //@PostConstruct
     private void setup() {
         Question question = new Question();
         question.setName("샘플 질문입니다.");

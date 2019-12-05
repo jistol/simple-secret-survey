@@ -23,6 +23,9 @@ public class Question extends TimeStampEntity {
     @Column
     private String name;
     
+    @Column
+    private String description;
+    
     @Fetch(FetchMode.SELECT)
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "questionId")
