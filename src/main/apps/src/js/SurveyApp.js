@@ -59,8 +59,8 @@ export default function SurveyApp() {
         <div className={classes.root}>
             <AppBar position="static">
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Do Survey" {...a11yProps(0)} />
-                    <Tab label="Confirm Result" {...a11yProps(1)} />
+                    <Tab label="설문하기" {...a11yProps(0)} />
+                    <Tab label="설문결과조회" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
             <SurveyPanel value={value} index={0}>

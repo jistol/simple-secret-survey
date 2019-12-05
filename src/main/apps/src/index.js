@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SurveyApp from './js/SurveyApp';
+import SurveyRouter from "./router";
 
-ReactDOM.render(<SurveyApp />, document.getElementById('root'));
+ReactDOM.render(<SurveyRouter />, document.getElementById('root'));
